@@ -10,6 +10,7 @@
     "start-dev": "nodemon . -q",
     "test-coverage": "jest --coverage --watchAll=false"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -33,7 +34,7 @@
     "express-validation": "^4.1.0",
     "jsoncode": "^1.12.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.4",
+    "mongoose": "^6.3.3",
     "morgan": "^1.10.0"
   }
 }
