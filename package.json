@@ -21,7 +21,9 @@
     "eslint-plugin-import": "^2.26.0",
     "husky": "^7.0.0",
     "jest": "^28.1.0",
-    "nodemon": "^2.0.16"
+    "mongodb-memory-server": "^8.5.2",
+    "nodemon": "^2.0.16",
+    "supertest": "^6.2.3"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -33,6 +35,7 @@
     "express": "^4.18.1",
     "express-validation": "^4.1.0",
     "jsoncode": "^1.12.3",
+    "helmet": "^5.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.3",
     "morgan": "^1.10.0"
