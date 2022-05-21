@@ -30,7 +30,7 @@ const loginUser = async (req, res, next) => {
       next(error);
     } else {
       const token = jsonwebtoken.sign(userData, process.env.JWT_SECRET);
-      res.json({ token });
+      res.status(201).json({ token });
     }
   }
 };
