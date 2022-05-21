@@ -1,8 +1,8 @@
 require("dotenv").config();
 const debug = require("debug")("socialRed:root");
 const chalk = require("chalk");
-const connectDb = require("./db");
-const initialServer = require("./server/initialServer");
+const connectDb = require("./src/db");
+const initialServer = require("./src/server/initialServer");
 
 (async () => {
   try {

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --watchAll",
     "prepare": "husky install",
-    "start": "node .",
-    "start-dev": "nodemon . -q",
+    "start": "node index",
+    "start-dev": "nodemon index -q",
     "test-coverage": "jest --coverage --watchAll=false"
   },
   "keywords": [],
@@ -36,5 +36,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.3",
     "morgan": "^1.10.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ]
   }
 }
