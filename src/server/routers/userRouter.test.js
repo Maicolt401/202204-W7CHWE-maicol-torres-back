@@ -1,40 +1,32 @@
 const request = require("supertest");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const mongoose = require("mongoose");
-
-const User = require("../../db/models/User");
-const { app } = require("../index");
+const app = require("..");
 const connectDb = require("../../db/index");
+const User = require("../../db/models/User");
 const { usersMock } = require("../mocks/userMocks");
 
 let mongoServer;
-let users;
 
-beforeAll(async () => {
-  mongoServer = await MongoMemoryServer.create();
-  await connectDb(mongoServer.getUri());
-});
-
-beforeEach(async () => {
-  await User.create(users[0]);
-  await User.create(users[1]);
-});
-
-afterEach(async () => {
-  await User.deleteMany({});
-});
-
-afterAll(async () => {
-  await mongoose.connection.close();
-});
-
-describe("Given a Get '/login'", () => {
+describe("Given a post /users/login endpoint", () => {
   describe("When it receives a request", () => {
-    users = usersMock;
-    test("Then it should return a response with a status 200 and a list of users", async () => {
-      const { body } = await request(app).get("/users/login").expect(200);
+    test("Then it should respond with a 200 status code and a token", async () => {
+      debugger;
+      mongoServer = await MongoMemoryServer.create();
+      await connectDb(mongoServer.getUri());
+      await User.create(usersMock[0]);
+      const response = await request(app)
+        .post("/users/login")
+        .send({
+          username: "mario",
+          password: "123456",
+        })
+        .expect(200);
+      await User.deleteMany({});
+      await mongoose.connection.close();
+      await mongoServer.stop();
 
-      expect(body.users).toHaveLength(users.length);
+      // expect(response.body.token).not.toBeNull();
     });
   });
 });
