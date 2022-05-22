@@ -1,12 +1,10 @@
 const usersMock = [
   {
-    _id: "6287dcfafc0614bd47bc9c4a",
-    name: "Esmerejildo",
-    username: "esmerejildito",
-    password: "123546446213541",
+    name: "mario",
+    username: "mario",
+    password: "$2a$10$Ay2UGXcBSLIaD165gyfmluOuv5fOJ/Gp3hjM5XHw1YltnFpPIE1Wi",
   },
   {
-    _id: "6287e11ffc0614bd47bc9c4e",
     name: "Maichol",
     username: "seriamaravillso",
     password: "jhdhjgbasjhgfyasdgf",
@@ -14,7 +12,6 @@ const usersMock = [
 ];
 
 const userMock = {
-  _id: "6287dcfafc0614bd47bc9c4a",
   name: "Manolo",
   username: "manolo25",
   password: "jkdsvlkhfhidsuhf",

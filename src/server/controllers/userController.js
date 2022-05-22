@@ -35,4 +35,24 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-module.exports = { loginUser };
+const userRegister = async (req, res, next) => {
+  const { name, username, password, image } = req.body;
+  const encryptedPassword = await bcrypt.hash(password, 10);
+
+  try {
+    await User.create({
+      name,
+      username,
+      password: encryptedPassword,
+      image,
+    });
+    res.status(201).jason(req.body);
+  } catch (error) {
+    error.statusCode = 400;
+    error.customMessage = "bad request";
+
+    next(error);
+  }
+};
+
+module.exports = { loginUser, userRegister };
