@@ -10,6 +10,17 @@ const user = {
 };
 
 jest.mock("../../db/models/User", () => ({
+  ...jest.requireActual("../../db/models/User"),
+  create: jest.fn(),
+  findOne: jest.fn(),
+}));
+
+jest.mock("fs", () => ({
+  ...jest.requireActual("fs"),
+  rename: jest.fn().mockReturnValue("1234image.jpg"),
+}));
+
+jest.mock("../../db/models/User", () => ({
   findOne: jest.fn().mockResolvedValue(user),
 }));
 
@@ -21,16 +32,17 @@ jest.mock("jsonwebtoken", () => ({
   sign: () => expectedToken,
 }));
 
+const res = {
+  status: jest.fn().mockReturnThis(),
+  json: jest.fn(),
+};
+
 describe("Given the loginUser function", () => {
   const req = {
     body: {
       username: "papafrita",
       password: "papafrita",
     },
-  };
-  const res = {
-    status: jest.fn().mockReturnThis(),
-    json: jest.fn(),
   };
 
   describe("When it receives a request with the correct username and password and a res", () => {
@@ -50,6 +62,7 @@ describe("Given the loginUser function", () => {
       expect(res.json).toHaveBeenCalledWith(expectedJson);
     });
   });
+
   describe("When its invoked with a req with a wrong username", () => {
     test("Then it should call next", async () => {
       jest.spyOn(User, "findOne").mockResolvedValue(false);
@@ -61,6 +74,7 @@ describe("Given the loginUser function", () => {
       expect(next).toHaveBeenCalled();
     });
   });
+
   describe("When its invoked with a req with a orrect user but a wrong password", () => {
     test("Then it should call next", async () => {
       jest.spyOn(User, "findOne").mockResolvedValue(true);

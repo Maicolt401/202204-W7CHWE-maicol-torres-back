@@ -8,6 +8,7 @@ const initialServer = require("./src/server/initialServer");
   try {
     await connectDb(process.env.MONGO_DATABASE);
     await initialServer(process.env.PORT || 4000);
+    debug(chalk.green("your are connect"));
   } catch (error) {
     debug(chalk.red("error to connect"));
   }
